@@ -1,7 +1,7 @@
+use rocket::{ get, routes, Build };
+#[macro_use] extern crate rocket;
 use rand::seq::SliceRandom;
 use rand::Rng;
-#[macro_use] extern crate rocket;
-use rocket::{get, routes, Build};
 
 #[get("/random_number")]
 fn random_number_handler() -> String {
@@ -36,10 +36,11 @@ fn random_code_handler() -> String {
 
 #[launch]
 fn rocket() -> rocket::Rocket<Build> {
-    rocket::build().mount("/", routes![
-        random_number_handler,
-        random_color_handler,
-        random_id_handler,
-        random_code_handler
-    ])
+    rocket::build()
+        .mount("/", routes![
+            random_number_handler,
+            random_color_handler,
+            random_id_handler,
+            random_code_handler
+        ])
 }
